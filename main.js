@@ -733,27 +733,27 @@ function refreshLegend() {
 // ── Tabs (Graph/Table) ───────────────────────────────────────────────────
 function initTabs() {
   const tabGraph = document.getElementById("tab-graph");
-  const tabTable = document.getElementById("tab-table");
+  // const tabTable = document.getElementById("tab-table");
   const viewGraph = document.getElementById("view-graph");
-  const viewTable = document.getElementById("view-table");
+  // const viewTable = document.getElementById("view-table");
 
   tabGraph.addEventListener("click", () => {
     tabGraph.classList.add("active");
-    tabTable.classList.remove("active");
+    // tabTable.classList.remove("active");
     viewGraph.classList.add("active");
-    viewTable.classList.remove("active");
+    // viewTable.classList.remove("active");
     state.renderer.refresh();
   });
 
-  tabTable.addEventListener("click", () => {
-    tabTable.classList.add("active");
-    tabGraph.classList.remove("active");
-    viewTable.classList.add("active");
-    viewGraph.classList.remove("active");
+  // tabTable.addEventListener("click", () => {
+  //   tabTable.classList.add("active");
+  //   tabGraph.classList.remove("active");
+  //   viewTable.classList.add("active");
+  //   viewGraph.classList.remove("active");
 
-    if (!state.table) initTable();
-    setTimeout(() => state.table && state.table.redraw(true), 0);
-  });
+  //   if (!state.table) initTable();
+  //   setTimeout(() => state.table && state.table.redraw(true), 0);
+  // });
 }
 
 function initControlsToggle() {
