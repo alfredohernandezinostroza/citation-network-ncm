@@ -760,7 +760,7 @@ function initGlobalFilters() {
   const elAbstract = document.getElementById("filter-abstract");
   const elJournal = document.getElementById("filter-journal");
   const elKeywords = document.getElementById("filter-keywords");
-  const elMesh = document.getElementById("filter-mesh");
+  // const elMesh = document.getElementById("filter-mesh");
   const btn = document.getElementById("apply-filters");
 
   function readFiltersFromUI() {
@@ -769,7 +769,7 @@ function initGlobalFilters() {
     state.filters.abstract = elAbstract?.value || "";
     state.filters.journal = elJournal?.value || "";
     state.filters.keywords = elKeywords?.value || "";
-    state.filters.mesh = elMesh?.value || "";
+    // state.filters.mesh = elMesh?.value || "";
   }
 
   async function run() {
@@ -787,7 +787,8 @@ function initGlobalFilters() {
 
   btn.addEventListener("click", run);
 
-  const inputs = [elTitle, elAuthor, elAbstract, elJournal, elKeywords, elMesh].filter(Boolean);
+  // const inputs = [elTitle, elAuthor, elAbstract, elJournal, elKeywords, elMesh].filter(Boolean);
+  const inputs = [elTitle, elAuthor, elAbstract, elJournal, elKeywords].filter(Boolean);
   for (const input of inputs) {
     input.addEventListener("keydown", (e) => {
       if (e.key !== "Enter") return;
