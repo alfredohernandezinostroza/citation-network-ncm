@@ -581,6 +581,9 @@ function initControls() {
 
   //Search bar
   initSearch();
+
+  //Hide button
+  initControlsToggle()
 }
 function initSearch() {
   const input = document.getElementById("search");
@@ -753,6 +756,20 @@ function initTabs() {
   });
 }
 
+function initControlsToggle() {
+  const panel = document.getElementById("controls");
+  const btn = document.getElementById("controls-toggle");
+  if (!panel || !btn) return;
+
+  btn.addEventListener("click", () => {
+    const collapsed = panel.classList.toggle("collapsed");
+    btn.textContent = collapsed ? "⟩" : "⟨";
+    btn.setAttribute("aria-label", collapsed ? "Show controls" : "Hide controls");
+
+    // sigma needs a refresh after large overlay changes
+    if (state.renderer) state.renderer.refresh();
+  });
+}
 // ── Global filters (v1-like) ─────────────────────────────────────────────
 function initGlobalFilters() {
   const elTitle = document.getElementById("filter-title");

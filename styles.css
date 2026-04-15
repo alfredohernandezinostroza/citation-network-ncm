@@ -1,3 +1,5 @@
+
+
 :root {
   --bg: #0e1116;
   --panel-bg: rgba(20, 24, 32, 0.92);
@@ -59,6 +61,43 @@ html, body {
   color: var(--text-dim);
   font-size: 11px;
   margin-top: 2px;
+}
+/* ── Controls hide/show ──────────────────────────────────────────────── */
+#controls-toggle.icon-btn {
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: -6px -6px 8px 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #161a22;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+  padding-bottom: 1px;
+}
+
+#controls-toggle.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#controls.collapsed {
+  width: 44px;
+  padding: 10px;
+  overflow: hidden;
+}
+#controls.collapsed *:not(#controls-toggle) {
+  display: none !important;
+}
+#controls.collapsed #controls-toggle {
+  display: block !important;
+  float: none;
+  margin: 0;
 }
 /* ── Cluster centroid labels ─────────────────────────────────────────── */
 #cluster-labels {
