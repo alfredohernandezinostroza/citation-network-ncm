@@ -688,10 +688,47 @@ function initYearControls() {
   ymax.addEventListener("input", updateYear);
   updateYear();
 }
-
 function buildLegend() {
   const ul = document.getElementById("legend");
   ul.innerHTML = "";
+
+  // Add "Deselect All" / "Select All" buttons
+  const btnRow = document.createElement("div");
+  btnRow.className = "legend-btn-row";
+  btnRow.innerHTML = `
+    <button id="legend-select-all" type="button">Select All</button>
+    <button id="legend-deselect-all" type="button">Deselect All</button>
+  `;
+  ul.parentNode.insertBefore(btnRow, ul);
+  
+  document.getElementById("legend-select-all").addEventListener("click", () => {
+    state.mutedClusters.clear();
+    refreshLegend();
+    state.renderer.refresh();
+    scheduleRefilter();
+  });
+  
+  document.getElementById("legend-deselect-all").addEventListener("click", () => {
+    // Mute ALL clusters - both from clustersData AND from actual node data
+    state.mutedClusters.clear();
+    
+    // Add all clusters from clustersData
+    for (const cid of Object.keys(state.clustersData)) {
+      state.mutedClusters.add(parseInt(cid, 10));
+    }
+    
+    // Also add any cluster IDs found in nodes that might not be in clustersData
+    for (const node of state.nodesData.nodes) {
+      if (node.cluster != null) {
+        state.mutedClusters.add(node.cluster);
+      }
+    }
+    
+    refreshLegend();
+    state.renderer.refresh();
+    scheduleRefilter();
+  });
+  
   const ids = Object.keys(state.clustersData).sort(
     (a, b) => state.clustersData[b].size - state.clustersData[a].size
   );
@@ -712,7 +749,7 @@ function buildLegend() {
       scheduleRefilter();
     });
     li.addEventListener("dblclick", () => {
-      state.mutedClusters = new Set();
+      state.mutedClusters.clear();
       refreshLegend();
       state.renderer.refresh();
       scheduleRefilter();

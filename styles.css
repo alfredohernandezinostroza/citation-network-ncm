@@ -499,3 +499,28 @@ details.about p {
   opacity: 0;
   pointer-events: none;
 }
+
+/* ── Legend buttons ──────────────────────────────────────────────────── */
+.legend-btn-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.legend-btn-row button {
+  flex: 1;
+  padding: 6px 10px;
+  background: #161a22;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 120ms, color 120ms;
+}
+
+.legend-btn-row button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
